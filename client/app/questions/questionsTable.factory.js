@@ -6,5 +6,5 @@ angular.module('convideoApp')
       var object = _.cloneDeep(questionsTableValue);
       object.options.categoryIDtoName = categories.names();
       return object;
-    }
+    };
   });

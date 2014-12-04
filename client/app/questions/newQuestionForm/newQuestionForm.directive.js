@@ -18,15 +18,15 @@ angular.module('convideoApp')
       			self.isSaving = false;
             if (self.model.isNew()){
               toaster.add({
-                type   :'success',
-                title  : "Exito!",
-                message: "Pregunta creada con exito."
+                type   : 'success',
+                title  : 'Exito!',
+                message: 'Pregunta creada con exito.'
               });
             } else {
               toaster.add({
-                type   :'success',
-                title  : "Exito!",
-                message: "Pregunta actualizada con exito."
+                type   : 'success',
+                title  : 'Exito!',
+                message: 'Pregunta actualizada con exito.'
               });
             }
           });

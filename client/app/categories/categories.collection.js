@@ -7,12 +7,12 @@ angular.module('convideoApp')
       links: function(){
       	var collection = this;
       	return _.map(collection.data, function(model){
-      		var url = 'videos/' + model._id
+      		var url = 'videos/' + model._id;
       		return {
 						name : model.get('name'),
 						icon : model.icon[model.get('type')],
 						url  : url
-      		}
+      		};
       	});
       },
       names: function(){

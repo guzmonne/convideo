@@ -14,7 +14,7 @@ angular.module('convideoApp')
         });
       }],
       controllerAs: 'sideBar',
-      link: function (scope, element, attrs) {
+      link: function (scope, element) {
         element.find('#menu-toggle').bind('click', function(){
         	$('#wrapper').toggleClass('active');
         });

@@ -6,7 +6,7 @@ angular.module('convideoApp')
       model: QuestionsModel,
       fetchByCategory: function(_category){
       	var collection = this;
-      	return Api['Question']['index']({_category: _category}, function(resp){
+      	return Api.Question.index({_category: _category}, function(resp){
       		collection.add(resp);
       	}).$promise;
       },

@@ -57,14 +57,14 @@ angular.module('convideoApp')
         };
         self.fetchCategories = function(e){
           if (e) { e.preventDefault(); }
-          var promise = $scope.categories.fetch()
+          var promise = $scope.categories.fetch();
           promise.then(function(){ self.pluckData(); });
           return promise;
         };
         self.fileChange = function(files, e){
           var file = files[0];
           self.file = file;
-        }
+        };
         self.save = function(){
           self.model.save().then(function(){
             if (self.model.isNew()){

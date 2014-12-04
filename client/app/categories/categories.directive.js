@@ -11,7 +11,7 @@ angular.module('convideoApp')
       controller: ['$scope', 'categoriesTableValue', function($scope, categoriesTableValue){
       	var self = this;
         self.collection = $scope.categories;
-        self.fetch = function(){ return self.collection.fetch(); }
+        self.fetch = function(){ return self.collection.fetch(); };
         self.tableData = categoriesTableValue;
       }],
       controllerAs: 'categoriesCtrl',

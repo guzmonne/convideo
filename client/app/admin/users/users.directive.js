@@ -7,7 +7,6 @@ angular.module('convideoApp')
 			restrict   : 'E',
 			controller : ['$scope', '$http', 'Auth', 'User', 'UsersModel', 'UsersCollection', 'toaster', function($scope, $http, Auth, User, UsersModel, UsersCollection, toaster){
 				var self    = this;
-				var newUser = true;
   	    (this.collection = new UsersCollection()).fetch();
 				this.active = new User();
 				this.delete = function(user) {
@@ -22,7 +21,7 @@ angular.module('convideoApp')
 				this.isAdmin = Auth.isAdmin;
 				this.save = function(){
 					var msg;
-					this.active.save().then(function(user){
+					this.active.save().then(function(){
 						if (self.newUser){
               msg = 'Usuario creado con exito.';
               self.collection.push(self.active);
@@ -46,11 +45,11 @@ angular.module('convideoApp')
 					this.active   = new UsersModel();
 					this.showForm = true;
 					this.newUser  = true;
-				}
+				};
 				this.cancel = function(e){ 
 					if (e) { e.preventDefault(); }
 					this.showForm = false; 
-				}
+				};
       }],
       controllerAs: 'users',
     };
