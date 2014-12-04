@@ -1,0 +1,10 @@
+a.list-group-item-high {
+	display: inline-block;
+	height:auto;
+	min-height:190px;
+	padding-bottom: 5px;
+	width: 100%;
+}
+a.list-group-item-high.active small {
+	color:#fff;
+}

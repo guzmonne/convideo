@@ -1,0 +1,36 @@
+<div class="row margin-top">
+	<div class="col-sm-3">
+		<select class="form-control" ng-model="guxTable.paginationValue" ng-options="value for value in guxTable.paginationValues"></select>
+	</div>
+	<div class="col-sm-4 col-sm-offset-5 form-group has-feedback">
+		<input ng-model="guxTable.filter" type="text" class="form-control" aria-describedby="inputSearch"/>
+		<span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
+		<span class="sr-only">(search)</span>
+	</div><!-- /.div -->	
+</div><!-- /.row -->
+<table class="table table-hover table-striped table-condensed margin-top-2">
+	<thead>
+		<tr>
+			<th 
+				ng-repeat="column in tableData.headers" 
+				class="{{(column.headerClass || '')}} pointer"
+				ng-click="guxTable.sortBy(column.attribute)">
+					{{column.header}}
+					<span class="pull-right" ng-show="guxTable.sortAttr === column.attribute"><i class="fa" ng-class="{true: 'fa-chevron-up', false: 'fa-chevron-down'}[guxTable.sortReverse]"></i></span>
+				</th>
+			<th class="text-center">...</th>
+		</tr>
+	</thead><tbody>
+	</tbody>
+</table><!-- /.table table-hover table-striped -->
+<div class="row">
+	<div class="col-lg-12">
+		<pagination 
+			class="pull-right pagination-sm" 
+			total-items="guxTable.filtered.length" 
+			items-per-page="guxTable.paginationValue"
+			ng-model="guxTable.currentPage" 
+			boundary-links="true" 
+			previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+	</div><!-- /.col-lg-12 -->
+</div><!-- /.row -->

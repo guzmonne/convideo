@@ -1,0 +1,47 @@
+$defaultMargin: 20px;
+
+.margin-top {
+	margin-top: $defaultMargin;
+}
+
+.margin-top-4x {
+	margin-top: 4*$defaultMargin;
+}
+
+.margin-top-2x {
+	margin-top: 2*$defaultMargin;
+}
+
+.margin-top-3x {
+	margin-top: 3*$defaultMargin;
+}
+
+.margin-bottom {
+	margin-bottom: $defaultMargin;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+$column: 100px;
+
+th {
+	min-width: $column;
+}
+
+th.column-2x {
+	min-width: $column*2;
+}
+
+.table > tbody > tr > td {
+	vertical-align: middle;
+}
+
+.non-margin-left{
+	margin-left: -15px;
+}
+
+.non-padding-right{
+	padding-right: 0px;
+}

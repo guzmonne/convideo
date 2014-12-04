@@ -1,0 +1,33 @@
+<div class="container-fluid">
+	<div class="col-lg-12">
+		<h1 id="video-title">{{videos.current.get('name')}}</h1>
+		<hr />
+		<div class="embed-responsive embed-responsive-16by9" id="video-frame">
+      <iframe class="embed-responsive-item" ng-src="{{videos.current.get('source') | trusted}}"></iframe>
+  	</div>
+  	<hr />
+  	<tabset>
+  		<tab heading="Lista de Videos">
+				<h2>Lista de Vídeos</h2>
+				<video-item
+          ng-repeat="video in videos.collection.data"
+          model="video"
+          on-click="videos.setCurrent(model)"
+          active="{{$first}}"
+        ></video-item>
+  		</tab>
+  		<tab heading="Preguntas">
+  			<h2>
+  				Preguntas
+  				<a href="javascript: void(0);" class="btn btn-success pull-right" ng-click="videos.toggleForm()" ng-hide="videos.showForm"><i class="fa fa-plus"></i> Nueva Pregunta</a>
+  				<a href="javascript: void(0);" class="btn btn-danger pull-right" ng-click="videos.toggleForm()" ng-show="videos.showForm"><i class="fa fa-minus"></i> Cerrar Formulario</a>
+  			</h2>
+        <div class="container">
+          <new-question ng-show="videos.showForm" category="{{videos._category}}"></new-question>
+          <question model="question" ng-repeat="question in videos.questions.data" ng-if="question.attributes.answer"></question>
+        </div><!-- /.container -->
+  		</tab>	
+  	</tabset>
+  	
+	</div><!-- /.col-lg-12 -->
+</div><!-- /.container-fluid -->

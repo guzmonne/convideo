@@ -1,0 +1,78 @@
+<div class="container-fluid margin-top">
+  <div class="row">
+		<form name="form" class="form-horizontal" ng-submit="newVideo.submit()" novalidate>
+			<div class="form-group">
+				<label for="category" class="control-label col-md-2">Categoría</label>
+					<div class="col-md-8">
+						<select name="category" class="form-control" ng-model="newVideo.model.attributes._category._id" ng-options="category._id as category.name for category in newVideo.categories" >
+							<option value="">-- seleccione una categoría --</option>
+						</select>
+					</div><!-- /.col-md-10 -->
+					<div class="col-md-2">
+						<button class="btn btn-primary" ng-click="newVideo.fetchCategories($event)">
+			      	<span>Actualizar</span>
+			    	</button>
+					</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="control-label col-md-2">Nombre</label>
+					<div class="col-md-10">
+						<input name="name" type="text" ng-model="newVideo.model.attributes.name" class="form-control" placeholder="Nombre" ng-required>
+					</div><!-- /.col-md-10 -->
+			</div>
+			<div class="form-group">
+				<label for="description" class="control-label col-md-2">Descripción</label>
+					<div class="col-md-10">
+						<textarea id="description" name="description" ng-model="newVideo.model.attributes.description" class="form-control" placeholder="Descripción" rows="6" ng-required></textarea>
+					</div><!-- /.col-md-10 -->
+			</div>
+			<div class="form-group">
+				<label for="author" class="control-label col-md-2">Autor</label>
+					<div class="col-md-10">
+						<input type="text" id="author" name="author" ng-model="newVideo.model.attributes.author" class="form-control" placeholder="Autor" ng-required>
+					</div><!-- /.col-md-10 -->
+			</div>
+			<div class="form-group">
+				<label for="type" class="control-label col-md-2">Tipo</label>
+					<div class="col-md-10">
+						<select name="type" ng-model="newVideo.model.attributes.type" class="form-control">
+							<option value="">-- seleccione un tipo --</option>
+							<option value="Video Local">Video Local</option>
+							<option value="YouTube">YouTube</option>
+						</select>
+					</div><!-- /.col-md-10 -->
+			</div>
+			<div class="form-group">
+				<label for="source" class="control-label col-md-2">Fuente</label>
+					<div class="col-md-10">
+						<input name="source" type="text" ng-model="newVideo.model.attributes.source" class="form-control" placeholder="Fuente" ng-required>
+					</div><!-- /.col-md-10 -->
+			</div>
+			<div class="form-group">
+				<label for="file" class="control-label col-md-2">Archivo de Video</label>
+					<div class="col-md-10">
+						<input 
+							name="file" 
+							type="file" 
+							ng-file-select 
+							ng-file-model="newVideo.file" 
+							ng-model="newVideo.model.attributes.file"
+							ng-file-change="newVideo.fileChange($files, $event)" 
+							class="form-control" 
+							placeholder="Fuente" ng-required>
+					</div><!-- /.col-md-10 -->
+			</div>
+			<div class="form-group">
+				<label for="image" class="control-label col-md-2">Imagen</label>
+					<div class="col-md-10">
+						<input name="image" type="text" ng-model="newVideo.model.attributes.image" class="form-control" placeholder="Imagen" ng-required>
+					</div><!-- /.col-md-10 -->
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<button class="btn btn-primary" type="submit">Aceptar</button>
+				</div><!-- /.col-md-10 -->
+			</div>
+		</form>
+  </div>
+</div>

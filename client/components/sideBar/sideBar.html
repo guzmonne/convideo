@@ -1,0 +1,15 @@
+<div id="sidebar-wrapper">
+  <ul id="sidebar_menu" class="sidebar-nav">
+    <li class="sidebar-brand">
+      <a href="javascript: void(0);" id="menu-toggle">
+        <span class="white-on-hover" ng-click="sideBar.home()">ConaVideo</span>
+        <i class="fa fa-align-justify main-icon"></i>
+      </a>
+    </li><!-- /.sidebar-brand -->
+  </ul><!-- /#sidebar-menu.sidebar-nav -->
+  <ul class="sidebar-nav" id="sidebar">
+    <li ng-repeat="link in sideBar.links">
+    	<a href="{{link.url}}">{{link.name}}<i tooltip="{{link.name}}"  tooltip-trigger="mouseenter" tooltip-placement="right" class="fa sub-icon {{link.icon || 'fa-link'}}"></i></a>
+    </li>
+  </ul><!-- /#sidebar.sidebar-nav -->
+</div><!-- /#sidebar-wrapper -->

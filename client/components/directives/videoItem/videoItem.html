@@ -1,0 +1,14 @@
+<a class="list-group-item list-group-item-high" href="javascript: void(0);">
+	<div class="media col-md-3">
+		<figure class="pull-left">
+			<img ng-src="{{video.model.get('image') || 'http://placehold.it/300x190'}}" alt="{{video.model.get('title') + '- imagen'}}" class="media-object img-rounded img-responsive" />
+		</figure><!-- /.pull-left -->
+	</div>
+	<div class="col-md-7">
+		<h4 class="list-group-item-heading">{{video.model.get('name')}}</h4>
+		<p class="list-group-item-text">{{video.model.get('description')}}</p><!-- /.list-group-item-text -->
+	</div>
+	<div class="col-md-2">
+		<button class="btn btn-default btn-lg btn-block" name="playNow" ng-click="video.select()">Ver Ahora</button>
+	</div>
+</a>

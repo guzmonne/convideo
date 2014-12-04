@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h2 class="text-capitalize">{{question.model.attributes.title}}</h2>
+	</div><!-- /.col-lg-12 -->
+	<div class="col-lg-12">
+		<blockquote>
+			<p>{{question.model.attributes.question}}</p>
+			<footer>{{question.model.attributes.name}} <cite title="createdAt">{{question.model.attributes.createdAt | date:'dd/MM/yyyy'}}</cite></footer>
+		</blockquote>
+	</div><!-- /.col-lg-12 -->	
+	<div ng-if="question.model.attributes.answer" class="col-lg-12">
+		<p>{{question.model.attributes.answer}}</p>
+		<span class="pull-right"><strong>{{question.model.attributes.answeredBy.name}}</strong> - {{question.model.attributes.answeredAt | date:'dd/MM/yyyy'}}</span>
+	</div><!-- /.col-lg-12 -->
+</div>

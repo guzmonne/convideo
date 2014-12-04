@@ -1,0 +1,28 @@
+<div class="container-fluid">
+	<div class="row margin-top">
+		<div class="col-sm-12">
+			<ul class="nav nav-tabs">
+			  <li role="presentation">
+					<a ui-sref="admin.users" class="list-group-item" ui-sref-active="active">Usuarios</a>
+			  </li>
+			  <li role="presentation">
+					<a ui-sref="admin.categories" class="list-group-item" ui-sref-active="active">Categorías</a>
+			  </li>
+			  <li role="presentation">
+					<a ui-sref="admin.videos" class="list-group-item" ui-sref-active="active">Videos</a>
+			  </li>
+			  <li role="presentation">
+					<a ui-sref="admin.questions" class="list-group-item" ui-sref-active="active">Preguntas</a>
+			  </li>
+			  <li role="presentation">
+					<a ui-sref="admin.settings" class="list-group-item" ui-sref-active="active">Perfil</a>
+			  </li>
+			</ul>
+		</div><!-- /.col-sm-12 -->
+	</div><!-- /.row -->
+	<div class="row margin-top-2x">
+		<div class="col-lg-12">
+			<section ui-view></section>
+		</div><!-- /.col-lg-12 -->
+	</div><!-- /.row -->
+</div><!-- /.container-fluid -->

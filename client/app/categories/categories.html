@@ -1,0 +1,18 @@
+<tabset>
+	<tab heading="Lista">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 margin-top-1x">
+					<update-button update="categoriesCtrl.fetch"></update-button>	
+				</div>
+				<div class="col-lg-12">
+					<gux-table collection="categoriesCtrl.collection" table-data="categoriesCtrl.tableData" edit=""></gux-table>
+				</div><!-- /.col-lg-12 -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</tab>
+	<tab>
+		<tab-heading><i class="fa fa-plus"></i> Nueva Categoría</tab-heading>
+		<new-category></new-category>
+	</tab>
+</tabset>
