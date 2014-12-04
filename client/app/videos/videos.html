@@ -5,7 +5,7 @@
 
 		<div class="embed-responsive embed-responsive-16by9" id="video-frame">
       <iframe class="embed-responsive-item" ng-src="{{videos.current.get('source') | trusted}}" ng-if="videos.current.get('type') === 'YouTube'"></iframe>
-      <video ng-src="{{videos.current.get('source')}}" ng-if="videos.current.get('type') === 'Video Local'"></video>
+      <video ng-src="{{videos.current.get('source')}}" ng-if="videos.current.get('type') === 'Video Local'" controls autoplay></video>
   	</div>
   	<hr />
   	<tabset>

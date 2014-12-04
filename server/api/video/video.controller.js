@@ -6,6 +6,7 @@ var fs     = require('fs');
 var path   = require('path');
 var crypto = require('crypto');
 var config = require('../../config/environment');
+var ffmpeg = require('fluent-ffmpeg');
 
 // Get list of videos
 exports.index = function(req, res) {
@@ -76,15 +77,18 @@ exports.destroy = function(req, res) {
 
 // Manages de Upload of a Video
 exports.upload = function(req, res, next){
-  var data = _.pick(req.body, 'type'),
-      file = req.files.file;
-  console.log(file, data);
+  var data     = _.pick(req.body, 'type'),
+      file     = req.files.file,
+      fileName;
   if (!file){ return res.send(404); }
-  var newPath = config.assets + "/videos/" + file.name;
-  fs.rename(file.path, newPath, function(err){
-    if (err) { return handleError(res, err); }
-    res.json(200, {name: file.name});
-  });
+  fileName = (file.name.substr(0, file.name.lastIndexOf('.')) || file.name) + '.mp4';
+  var newPath = config.assets + "/videos/" + fileName;
+  ffmpeg(file.path).save(newPath);
+  res.json(200, {name: fileName});
+  //fs.rename(file.path, newPath, function(err){
+  //  if (err) { return handleError(res, err); }
+  //  res.json(200, {name: fileName});
+  //});
 };
 
 function handleError(res, err) {
