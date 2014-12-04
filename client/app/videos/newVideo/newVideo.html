@@ -42,24 +42,28 @@
 						</select>
 					</div><!-- /.col-md-10 -->
 			</div>
-			<div class="form-group">
+			<div class="form-group" ng-show="newVideo.model.attributes.type === 'YouTube'">
 				<label for="source" class="control-label col-md-2">Fuente</label>
 					<div class="col-md-10">
 						<input name="source" type="text" ng-model="newVideo.model.attributes.source" class="form-control" placeholder="Fuente" ng-required>
 					</div><!-- /.col-md-10 -->
 			</div>
-			<div class="form-group">
+			<div class="form-group" ng-show="newVideo.model.attributes.type === 'Video Local'">
 				<label for="file" class="control-label col-md-2">Archivo de Video</label>
 					<div class="col-md-10">
 						<input 
 							name="file" 
 							type="file" 
 							ng-file-select 
-							ng-file-model="newVideo.file" 
-							ng-model="newVideo.model.attributes.file"
-							ng-file-change="newVideo.fileChange($files, $event)" 
+							ng-file-model="newVideo.file"
+							ng-file-change="newVideo.fileChange($files)"
 							class="form-control" 
 							placeholder="Fuente" ng-required>
+						<div class="progress margin-top" ng-hide="newVideo.progress === 0">
+						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="{{newVideo.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{newVideo.progress}}%;">
+						    {{newVideo.progress}}%
+						  </div>
+						</div>
 					</div><!-- /.col-md-10 -->
 			</div>
 			<div class="form-group">

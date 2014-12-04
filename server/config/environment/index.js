@@ -33,7 +33,7 @@ var all = {
   userRoles: ['guest', 'user', 'admin'],
 
   // Assets directory
-  assets: path.normalize(__dirname + '/../../../public'),
+  assets: path.normalize(__dirname + '/../../../public/assets'),
 
   // Temporal directory
   tmp: path.normalize(__dirname + '/../../../tmp'),

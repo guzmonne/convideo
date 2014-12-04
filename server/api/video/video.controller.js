@@ -81,10 +81,9 @@ exports.upload = function(req, res, next){
   console.log(file, data);
   if (!file){ return res.send(404); }
   var newPath = config.assets + "/videos/" + file.name;
-  console.log(newPath);
   fs.rename(file.path, newPath, function(err){
     if (err) { return handleError(res, err); }
-    res.json(200, {path: newPath});
+    res.json(200, {name: file.name});
   });
 };
 

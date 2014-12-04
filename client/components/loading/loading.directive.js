@@ -18,6 +18,12 @@ angular.module('convideoApp')
 						self.on = false;
 		    	}
 				});
+				$rootScope.$on('loading', function(event, toState){
+					self.on = true;
+				});
+				$rootScope.$on('stopLoading', function(event, toState){
+					self.on = false;
+				});
 			}],
 			controllerAs: 'loading',
     };

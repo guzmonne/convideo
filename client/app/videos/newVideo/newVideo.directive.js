@@ -6,45 +6,51 @@ angular.module('convideoApp')
       templateUrl: 'app/videos/newVideo/newVideo.html',
       restrict: 'E',
       scope: {
-        editModel : "=",
-        categories: "=",
+        editModel : '=',
+        categories: '=',
       },
-      controller: ['$scope', '$upload', 'VideosModel', 'toaster', function($scope, $upload, VideosModel, toaster){
+      controller: ['$rootScope', '$scope', '$upload', 'VideosModel', 'toaster', function($rootScope, $scope, $upload, VideosModel, toaster){
         var self      = this;
         self.model    = new VideosModel();
         self.rootUrl  = '/api/videos/upload/';
         self.fileName = '';
-        self.upload   = function(file){
-          $upload
+        self.progress = 0;
+        self.upload   = function(file, callback){
+          return $upload
             .upload({
               url    : self.rootUrl + (self.model.get('name') || _.uniqueId('video_')),
               method : 'POST',
               file   : file,
             })
             .progress(function(evt){
-              console.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '% file :'+ evt.config.file.name);
+              self.progress = parseInt(100.0 * evt.loaded / evt.total);
             })
-            .success(function(data, status, headers, config){
-              console.log(data);
+            .success(function(data){
+              toaster.add({
+                type   : 'success',
+                title  : 'Exito!',
+                message: 'Su video se ha subido correctamente.'
+              });
+              self.progress = 0;
+              self.model.set('source', '/assets/videos/' + data.name);
+              callback(data);
+            })
+            .error(function(){
+              toaster.add({
+                type   : 'danger',
+                title  : 'Error!',
+                message: 'Ha ocurrido un error inesperado al intentar subir el video'
+              });
+              $rootScope.$emit('stopLoading');
             });
         };
         self.submit = function(){
-      		self.model.save().then(function(){
-            if (self.model.isNew()){
-              toaster.add({
-                type   :'success',
-                title  : "Exito!",
-                message: "Video creado con exito."
-              });
-            } else {
-              toaster.add({
-                type   :'success',
-                title  : "Exito!",
-                message: "Video actualizado con exito."
-              });
-            }
-          });
-      		if (self.model.isNew()) {self.model = new VideosModel();}
+          if (self.model.get('type') === 'Video Local'){
+            $rootScope.$emit('loading');
+            self.upload(self.file, self.save);
+          } else {
+            self.save();
+          }
       	};
         self.pluckData = function(){
           self.categories = $scope.categories.pluckData();
@@ -56,10 +62,28 @@ angular.module('convideoApp')
           return promise;
         };
         self.fileChange = function(files, e){
-          console.log(self, files, e);
           var file = files[0];
-          self.upload(file);
+          self.file = file;
         }
+        self.save = function(){
+          self.model.save().then(function(){
+            if (self.model.isNew()){
+              toaster.add({
+                type   : 'success',
+                title  : 'Exito!',
+                message: 'Video creado con exito.'
+              });
+            } else {
+              toaster.add({
+                type   : 'success',
+                title  : 'Exito!',
+                message: 'Video actualizado con exito.'
+              });
+            }
+          });
+          if (self.model.isNew()) {self.model = new VideosModel();}
+          $rootScope.$emit('stopLoading');
+        };
       }],
       controllerAs: 'newVideo',
       link: function (scope) {
