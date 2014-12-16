@@ -9,7 +9,7 @@ angular.module('convideoApp')
       	var self = this;
         self.home = function(){ $state.go('main'); };
         self.collection = new CategoriesCollection();
-        self.collection.fetch().then(function(){
+        self.collection.fetch({enabled: true}).then(function(){
           self.links = self.collection.links();
         });
       }],

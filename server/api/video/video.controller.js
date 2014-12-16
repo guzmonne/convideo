@@ -12,6 +12,7 @@ var ffmpeg = require('fluent-ffmpeg');
 exports.index = function(req, res) {
   var query = {};
   if (req.query._category){ query._category = req.query._category; }
+  if (req.query.enabled)  { query.enabled   = req.query.enabled; }
   Video
     .find(query)
     .populate('_category', 'name')

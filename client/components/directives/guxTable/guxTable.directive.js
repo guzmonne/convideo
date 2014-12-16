@@ -9,10 +9,12 @@ angular.module('convideoApp')
 				collection: '=',
 				tableData : '=',
 				edit      : '&',
+        actions   : '&',
       },
       controller: ['$scope', function($scope){
-      	this.edit = function(id){ $scope.edit({id: id}); }
-      	this.activate = function(model){ this.active = model; }
+        this.edit     = function(id){ $scope.edit({id: id}); };
+        this.actions  = function(object){ $scope.actions({object: object}); };
+        this.activate = function(model){ this.active = model; }
 				this.sortAttr        = '_category';
 				this.sortReverse     = false;
 				this.sortBy          = function(attr){
@@ -32,7 +34,7 @@ angular.module('convideoApp')
       controllerAs: 'guxTable',
       link: function (scope, element) {
         function buildBody(){
-        	var template = angular.element('<tr></tr>');
+        	var button = [], template = angular.element('<tr></tr>');
         	template.attr('ng-repeat', [
         		'model in guxTable.filtered = (guxTable.collection.pluckData() ',
         		'| orderBy:guxTable.sortAttr:guxTable.sortReverse',
@@ -47,14 +49,17 @@ angular.module('convideoApp')
         	_.forEach(scope.tableData.headers, function(column){
         		template.append('<td class="'+ (column.bodyClass || '') +'">'+ column.content +'</td>');
         	});
-        	template.append([
-	  					'<td class="text-center">',
-								'<button ng-click="guxTable.edit((model._id || null))" class="btn btn-warning btn-xs">',
-									'<i class="fa fa-pencil"></i>',
-								'</button>',
-							'</td>',
-        		].join('')
-        	);
+          button.push([
+            '<td class="text-center">',
+              '<button ng-click="guxTable.edit((model._id || null))" class="btn btn-warning btn-xs">',
+                '<i class="fa fa-pencil"></i>',
+              '</button>'
+          ].join(''));
+          if (scope.tableData.options && _.isString(scope.tableData.options.controlsTemplate)){
+            button.push(scope.tableData.options.controlsTemplate);
+          }
+          button.push('</td>');
+          template.append( button.join('') );
         	return template;
         }
         function compileBody(){

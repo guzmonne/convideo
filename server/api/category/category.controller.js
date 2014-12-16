@@ -3,10 +3,11 @@
 var _        = require('lodash');
 var Category = require('./category.model');
 
-// Get list of categorys
+// Get list of categories
 exports.index = function(req, res) {
+  var query = (_.isUndefined(req.query.enabled)) ? {} : {enabled: req.query.enabled}; 
   Category
-    .find()
+    .find(query)
     .populate('createdBy', 'name')
     .exec(function (err, categorys) {
       if(err) { return handleError(res, err); }

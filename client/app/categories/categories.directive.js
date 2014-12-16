@@ -11,6 +11,17 @@ angular.module('convideoApp')
       controller: ['$scope', 'categoriesTableValue', 'toaster', function($scope, categoriesTableValue, toaster){
       	var self = this;
         self.collection = $scope.categories;
+        self.actions = function(object){
+          var id = object,
+              model = self.collection.find(id);
+          model.set('enabled', !model.get('enabled'));
+          model.save().then(function(){
+            toaster.add({
+              title: 'Categoria Habilitada',
+              type: 'success'
+            });
+          });
+        };
         self.fetch = function(){ 
           return self.collection.fetch().then(
             function(data){

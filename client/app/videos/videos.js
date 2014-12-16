@@ -12,7 +12,7 @@ angular.module('convideoApp')
             return (new QuestionsCollection()).fetch({_category: $stateParams._category});
           }],
           videos: ['$stateParams', 'VideosCollection', function($stateParams, VideosCollection){
-            return (new VideosCollection().fetch({_category: $stateParams._category}));
+            return (new VideosCollection().fetch({_category: $stateParams._category, enabled: true}));
           }],
         },
       });

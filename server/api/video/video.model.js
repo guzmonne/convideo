@@ -24,6 +24,7 @@ var VideoSchema = new Schema({
 		ref: 'User'
 	},
 	updatedAt   : Date,
+	enabled     : Boolean,
 });
 
 VideoSchema.pre('save', function(next){

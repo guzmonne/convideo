@@ -41,6 +41,17 @@ angular.module('convideoApp')
           self.editTab = true;
         };
         self.tableData = videosTableValue;
+        self.actions = function(object){
+          var id = object,
+              model = self.collection.find(id);
+          model.set('enabled', !model.get('enabled'));
+          model.save().then(function(){
+            toaster.add({
+              title: 'Video Habilitado',
+              type: 'success'
+            });
+          });
+        };
       }],
       controllerAs: 'videos',
     };

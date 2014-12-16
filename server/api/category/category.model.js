@@ -14,6 +14,7 @@ var CategorySchema = new Schema({
 	updatedAt   : Date,
 	createdBy   : Schema.Types.ObjectId,
 	updatedBy   : Schema.Types.ObjectId,
+	enabled     : Boolean,
 });
 
 CategorySchema.pre('save', function(next){

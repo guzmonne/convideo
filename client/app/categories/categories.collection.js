@@ -9,9 +9,10 @@ angular.module('convideoApp')
       	return _.map(collection.data, function(model){
       		var url = 'videos/' + model._id;
       		return {
-						name : model.get('name'),
-						icon : model.icon[model.get('type')],
-						url  : url
+            name    : model.get('name'),
+            enabled : model.get('enabled'),
+            icon    : model.icon[model.get('type')],
+            url     : url
       		};
       	});
       },

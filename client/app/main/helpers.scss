@@ -20,6 +20,14 @@ $defaultMargin: 20px;
 	margin-bottom: $defaultMargin;
 }
 
+.margin-left {
+	margin-left: $defaultMargin;
+}
+
+.margin-left-1-2 {
+	margin-left: 0.5*$defaultMargin;
+}
+
 .pointer {
 	cursor: pointer;
 }
