@@ -3,7 +3,7 @@
 		<div class="container-fluid">
 			<div class="row">
 			  <div class="col-lg-12 margin-top-1x">
-			    <update-button update="questions.fetch"></update-button>
+			    <button class="btn btn-primary" ng-click="questions.fetch()">Actualizar</button>
 			  </div>
 				<div class="col-lg-12">
 					<gux-table collection="questions.collection" table-data="questions.tableData" edit="questions.activate(id)"></gux-table>
