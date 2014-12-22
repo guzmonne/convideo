@@ -86,8 +86,7 @@ exports.upload = function(req, res, next){
       file     = req.files.file,
       fileName;
   if (!file){ return res.send(404); }
-  fileName = (file.name.substr(0, file.name.lastIndexOf('.')) || file.name) + '.mp4';
-  console.log(config.assets);
+  fileName = (new Date().getTime()) + '_' + (file.name.substr(0, file.name.lastIndexOf('.')) || file.name).replace(/ /g,"_") + '.mp4';
   var newPath = config.assets + "/videos/" + fileName;
   ffmpeg(file.path).save(newPath);
   res.json(200, {name: fileName});
