@@ -8,6 +8,10 @@ var crypto = require('crypto');
 var config = require('../../config/environment');
 var ffmpeg = require('fluent-ffmpeg');
 
+// Set FFMPEG path
+ffmpeg.setFfmpegPath('/home/gmonne/bin/ffmpeg');
+ffmpeg.setFfprobePath('/home/gmonne/bin/ffprobe');
+
 // Get list of videos
 exports.index = function(req, res) {
   var query = {};
@@ -83,13 +87,10 @@ exports.upload = function(req, res, next){
       fileName;
   if (!file){ return res.send(404); }
   fileName = (file.name.substr(0, file.name.lastIndexOf('.')) || file.name) + '.mp4';
+  console.log(config.assets);
   var newPath = config.assets + "/videos/" + fileName;
   ffmpeg(file.path).save(newPath);
   res.json(200, {name: fileName});
-  //fs.rename(file.path, newPath, function(err){
-  //  if (err) { return handleError(res, err); }
-  //  res.json(200, {name: fileName});
-  //});
 };
 
 function handleError(res, err) {

@@ -45,7 +45,7 @@ angular.module('convideoApp')
             });
         };
         self.submit = function(){
-          if (self.model.get('type') === 'Video Local'){
+          if (self.model.get('type') === 'Video Local' && self.file){
             $rootScope.$emit('loading');
             self.upload(self.file, self.save);
           } else {
@@ -83,6 +83,17 @@ angular.module('convideoApp')
           });
           if (self.model.isNew()) {self.model = new VideosModel();}
           $rootScope.$emit('stopLoading');
+        };
+        self.toggleUploadField = function(e){
+          if (e) e.preventDefault();
+          var oldSource = self.model.get('oldSource');
+          if (oldSource){
+            self.model.set('source', self.model.get('oldSource'));
+            self.model.set('oldSource', undefined);
+          } else {
+            self.model.set('oldSource', self.model.get('source'));
+            self.model.set('source', undefined);
+          }
         };
       }],
       controllerAs: 'newVideo',
