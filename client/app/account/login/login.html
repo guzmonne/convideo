@@ -9,18 +9,18 @@
         <div class="form-group">
           <label>Email</label>
 
-          <input type="text" name="email" class="form-control" ng-model="user.email">
+          <input type="text" name="email" placeholder="Email" class="form-control" ng-model="user.email">
         </div>
 
         <div class="form-group">
-          <label>Password</label>
+          <label>Contraseña</label>
 
-          <input type="password" name="password" class="form-control" ng-model="user.password">
+          <input type="password" placeholder="Contraseña" name="password" class="form-control" ng-model="user.password">
         </div>
 
         <div class="form-group has-error">
           <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">
-             Please enter your email and password.
+             Por favor ingrese su usuario y contraseña.
           </p>
           <p class="help-block">{{ errors.other }}</p>
         </div>
@@ -29,9 +29,6 @@
           <button class="btn btn-inverse btn-lg btn-login" type="submit">
             Login
           </button>
-          <a class="btn btn-default btn-lg btn-register" href="/signup">
-            Register
-          </a>
         </div>
 
         
