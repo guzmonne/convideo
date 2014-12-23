@@ -47,7 +47,6 @@ angular.module('convideoApp')
 			      return object;
 			    }
 			    object[self.filterField] = self.searchString;
-			    console.log(object);
 			    return object;
 			  }
 

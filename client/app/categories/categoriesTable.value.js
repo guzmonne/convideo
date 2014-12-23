@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('convideoApp')
-  .value('categoriesTableValue', 
-    {
+  .service('categoriesTableValue', function(controlsTemplateValue, toggleEnable){
+    return {
       headers: [
         {
           header   : 'Nombre',
@@ -24,7 +24,10 @@ angular.module('convideoApp')
         },
       ],
       options: {
-        controlsTemplate: '<button ng-click="guxTable.actions(model._id)" class="btn btn-xs margin-left-1-2" ng-class="{false: \'btn-success\', true: \'btn-danger\'}[model.enabled === undefined || model.enabled === false]"><i class="fa" ng-class="{false: \'fa-eye\', true: \'fa-eye-slash\'}[model.enabled === undefined || model.enabled === false]"></i></button>'
+        controller: {
+          toggleEnable: toggleEnable({ on: 'Habilitada', off: 'Deshabilitada', modelName: 'Categoría' })
+        },
+        controlsTemplate: controlsTemplateValue,
       }
     }
-  );
+  });

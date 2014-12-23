@@ -67,7 +67,6 @@ angular.module('convideoApp')
             head.append('<th'+headerClass+' class="pointer" ng-click="sedTable.sort(\''+column.attribute+'\')" ng-show="sedTable.data['+index+'].show">'+column.name+'<i class="pull-right fa" ng-class="{\'fa-chevron-down\': sedTable.sortField === \''+column.attribute+'\' && sedTable.sortReverse === true, \'fa-chevron-up\': sedTable.sortField === \''+column.attribute+'\' && sedTable.sortReverse === false }"></i>'+'</th>');
             body.append('<td'+columnClass+' ng-show="sedTable.data['+index+'].show">'+column.content+'</td>');
           });
-          	console.log(body.html());
           // Body config
           body.append(buttonsFor(scope.type));
           body.attr('ng-repeat', [

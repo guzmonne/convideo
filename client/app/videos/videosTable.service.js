@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('convideoApp')
-  .value('videosTableValue', 
-    {
+  .service('videosTableValue', function(controlsTemplateValue, toggleEnable){
+    return {
       headers: [
         {
           header   : 'Categoría',
@@ -20,7 +20,7 @@ angular.module('convideoApp')
           header   : 'Descripción',
           attribute: 'description',
           visible  : true,
-          content  : '{{ model.description | limitTo:(tableData.options.descriptionsLength[model._id] || 200)}} <button ng-hide="model.description.length < 201 || !model.description" ng-click="tableData.options.showAll(model._id)" class="btn btn-xs"><i class="fa" ng-class="{true: \'fa-minus\', false: \'fa-plus\'}[tableData.options.descriptionsLength[model._id] > 200]"></i></button>'
+          content  : '{{ model.description | limitTo:(guxTable.controller.descriptionsLength[model._id] || 200)}} <button ng-hide="model.description.length < 201 || !model.description" ng-click="guxTable.controller.showAll(model._id)" class="btn btn-xs"><i class="fa" ng-class="{true: \'fa-minus\', false: \'fa-plus\'}[guxTable.controller.descriptionsLength[model._id] > 200]"></i></button>'
         },
         {
           header   : 'Tipo',
@@ -43,12 +43,15 @@ angular.module('convideoApp')
         },
       ],
       options: {
-        showAll: function(id){
-          var length = this.descriptionsLength[id];
-          this.descriptionsLength[id] = (_.isUndefined(length) || length === 200) ? 3000 : 200;
+        controller: {
+          descriptionsLength : [],
+          showAll            : function(id){
+            var length = this.descriptionsLength[id];
+            this.descriptionsLength[id] = (_.isUndefined(length) || length === 200) ? 3000 : 200;
+          },
+          toggleEnable: toggleEnable({ on: 'Habilitado', off: 'Deshabilitado', modelName: 'Video' }),
         },
-        descriptionsLength: [],
-        controlsTemplate: '<button ng-click="guxTable.actions(model._id)" class="btn btn-xs margin-left-1-2" ng-class="{false: \'btn-success\', true: \'btn-danger\'}[model.enabled === undefined || model.enabled === false]"><i class="fa" ng-class="{false: \'fa-eye\', true: \'fa-eye-slash\'}[model.enabled === undefined || model.enabled === false]"></i></button>'
+        controlsTemplate: controlsTemplateValue,
       }
     }
-  );
+  });

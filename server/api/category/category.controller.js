@@ -30,7 +30,6 @@ exports.create = function(req, res) {
   req.body.updatedBy = req.user._id;
   var body = req.body;
   body.createdBy = req.user._id;
-  console.log(body);
   Category.create(body, function(err, category) {
     if(err) { return handleError(res, err); }
     return res.json(201, category);

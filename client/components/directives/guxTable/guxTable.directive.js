@@ -9,7 +9,6 @@ angular.module('convideoApp')
 				collection: '=',
 				tableData : '=',
 				edit      : '&',
-        actions   : '&',
       },
       controller: ['$scope', function($scope){
         this.edit     = function(id){ $scope.edit({id: id}); };
@@ -30,6 +29,7 @@ angular.module('convideoApp')
     		this.collection       = $scope.collection;
     		this.currentPage      = 1;
     		this.filtered         = [];
+        this.controller       = ($scope.tableData.options.controller || {});
       }],
       controllerAs: 'guxTable',
       link: function (scope, element) {
