@@ -18,7 +18,7 @@ git push origin develop
 echo "====================================="
 echo "Bulding App. This may take a while..."
 echo "====================================="
-grunt --force
+#grunt --force
 echo "===================================="
 echo "Changing dir to ~/node/convideo/dist"
 echo "===================================="
@@ -31,7 +31,7 @@ git commit -m "$COMMITMSG"
 echo "==============================="
 echo "Pushing build changes to GitHub"
 echo "==============================="
-git push origin master
+git push -f origin master
 echo "================================"
 echo "Changing dir to ~/node/conavideo"
 echo "================================"
