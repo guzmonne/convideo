@@ -1,4 +1,14 @@
 $defaultMargin: 20px;
+$darkred: #843534;
+$darkgreen: #3c763d;
+
+a.text-danger:hover {
+	color: $darkred;
+}
+
+a.text-success:hover {
+	color: $darkgreen;
+}
 
 .margin-top {
 	margin-top: $defaultMargin;
