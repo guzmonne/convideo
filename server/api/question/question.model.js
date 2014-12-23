@@ -19,6 +19,7 @@ var QuestionSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref : 'User'
 	},
+	enabled: Boolean,
 	createdAt : Date,
 	answeredAt: Date
 });

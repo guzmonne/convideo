@@ -39,7 +39,7 @@ angular.module('convideoApp')
           attribute: 'createdBy.name',
           headerClass: 'column-2x',
           visible  : true,
-          content  : '<small class="text-muted">Creado: </small>{{ model.createdBy.name }} <span ng-if="model.updatedBy"><br /><small class="text-muted">Modificado: </small>{{model.updatedBy.name}}</span>'
+          content  : '<small class="text-muted">Creado: </small><span class="pull-right">{{ model.createdBy.name }}</span> <span ng-if="model.updatedBy"><br /><small class="text-muted">Modificado: </small><span class="pull-right">{{model.updatedBy.name}}</span></span>'
         },
       ],
       options: {

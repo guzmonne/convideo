@@ -12,12 +12,13 @@ angular.module('convideoApp')
       	var self = this;
         self.collection = $scope.categories;
         self.actions = function(object){
-          var id = object,
+          var msg, id = object,
               model = self.collection.find(id);
           model.set('enabled', !model.get('enabled'));
+          msg = (model.get('enabled')) ? 'Habilitada' : 'Deshabilitada'
           model.save().then(function(){
             toaster.add({
-              title: 'Categoria Habilitada',
+              title: 'Categoria ' + msg,
               type: 'success'
             });
           });

@@ -42,12 +42,13 @@ angular.module('convideoApp')
         };
         self.tableData = videosTableValue;
         self.actions = function(object){
-          var id = object,
+          var msg, id = object,
               model = self.collection.find(id);
           model.set('enabled', !model.get('enabled'));
+          msg = (model.get('enabled')) ? 'Habilitado' : 'Deshabilitado';
           model.save().then(function(){
             toaster.add({
-              title: 'Video Habilitado',
+              title: 'Video ' + msg,
               type: 'success'
             });
           });

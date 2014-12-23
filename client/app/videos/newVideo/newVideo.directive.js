@@ -33,6 +33,7 @@ angular.module('convideoApp')
               });
               self.progress = 0;
               self.model.set('source', '/assets/videos/' + data.name);
+              self.model.set('oldSource', undefined);
               callback(data);
             })
             .error(function(){

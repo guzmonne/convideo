@@ -40,6 +40,18 @@ angular.module('convideoApp')
           self.editTab = true;
       	};
         self.tableData = questionsTableValue;
+        self.actions = function(object){
+          var msg, id = object,
+              model = self.collection.find(id);
+          model.set('enabled', !model.get('enabled'));
+          msg = (model.get('enabled')) ? 'Habilitada' : 'Deshabilitada';
+          model.save().then(function(){
+            toaster.add({
+              title: 'Pregunta ' + msg,
+              type: 'success'
+            });
+          });
+        };
       }],
       controllerAs: 'questions'
     };

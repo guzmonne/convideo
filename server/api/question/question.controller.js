@@ -8,6 +8,7 @@ var User = require('../user/user.model');
 exports.index = function(req, res) {
   var query = {};
   if (req.query._category){ query._category = req.query._category; }
+  if (req.query.enabled)  { query.enabled   = req.query.enabled; }
   Question
     .find(query)
     .populate('_category', 'name')

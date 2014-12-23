@@ -9,7 +9,7 @@ angular.module('convideoApp')
         controller: 'VideosCtrl as videos',
         resolve: {
           questions: ['$stateParams', 'VideosCollection', 'QuestionsCollection', function($stateParams, VideosCollection, QuestionsCollection){
-            return (new QuestionsCollection()).fetch({_category: $stateParams._category});
+            return (new QuestionsCollection()).fetch({_category: $stateParams._category, enabled: true});
           }],
           videos: ['$stateParams', 'VideosCollection', function($stateParams, VideosCollection){
             return (new VideosCollection().fetch({_category: $stateParams._category, enabled: true}));
