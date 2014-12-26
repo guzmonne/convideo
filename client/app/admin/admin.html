@@ -2,7 +2,7 @@
 	<div class="row margin-top">
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
-			  <li role="presentation">
+			  <li role="presentation" ng-show="admin.isAdmin()">
 					<a ui-sref="admin.users" class="list-group-item" ui-sref-active="active">Usuarios</a>
 			  </li>
 			  <li role="presentation">

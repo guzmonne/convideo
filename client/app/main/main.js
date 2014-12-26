@@ -6,6 +6,14 @@ angular.module('convideoApp')
       .state('main', {
         url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+	resolve: {
+		collection: [
+			'VideosCollection',
+			function(VideosCollection){
+				return (new VideosCollection()).fetch({enabled:true, limitTo: 3});
+			}
+		],
+	},
       });
   });

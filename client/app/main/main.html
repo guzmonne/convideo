@@ -2,7 +2,7 @@
   <div class="container">
   	<div class="btn-toolbar btn-absolute-corner-right">
   		<div class="btn-group">
-    		<a class="btn btn-warning" ui-sref="admin.videos" ng-show="isAdmin()">Admin</a>
+    		<a class="btn btn-warning" ui-sref="admin.videos" ng-show="isLoggedIn()">Admin</a>
   		</div>
   		<div class="btn-group" ng-show="isLoggedIn()">
   			<button class="btn btn-success" ng-click="logout()">Logout</button>
@@ -15,3 +15,20 @@
     <p class="lead">Biblioteca de Videos</p>
   </div>
 </header>
+
+<div class="row no-margin">
+  <div class="col-lg-12">
+  	<h1>
+	  Videos Recientes
+	</h1>
+	<hr />
+  	<div>	
+	  <video-item
+            ng-repeat="video in collection.data"
+            model="video"
+            on-click="openVideo(video._id)"
+          ></video-item>
+	</div>
+  </div>
+</div>
+

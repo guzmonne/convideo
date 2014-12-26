@@ -14,15 +14,20 @@ ffmpeg.setFfprobePath('/home/gmonne/bin/ffprobe');
 
 // Get list of videos
 exports.index = function(req, res) {
-  var query = {};
-  if (req.query._category){ query._category = req.query._category; }
-  if (req.query.enabled)  { query.enabled   = req.query.enabled; }
-  Video
-    .find(query)
+  var query, params = {};
+  if (req.query._category){ params._category = req.query._category; }
+  if (req.query.enabled)  { params.enabled   = req.query.enabled; } 
+  query = Video
+    .find(params)
     .populate('_category', 'name')
     .populate('createdBy', 'name')
-    .populate('updatedBy', 'name')
-    .exec(function (err, videos) {
+    .populate('updatedBy', 'name');
+  console.log(req.query.limitTo);
+  if (req.query.limitTo){
+    console.log('I need to limit the query');
+    query = query.limit(parseInt(req.query.limitTo));
+  }
+  query.exec(function (err, videos) {
       if(err) { return handleError(res, err); }
       return res.json(200, videos);
     });
