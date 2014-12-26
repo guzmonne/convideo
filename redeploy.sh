@@ -18,7 +18,7 @@ git push origin develop
 echo "====================================="
 echo "Bulding App. This may take a while..."
 echo "====================================="
-#grunt --force
+grunt --force
 echo "===================================="
 echo "Changing dir to ~/node/convideo/dist"
 echo "===================================="
@@ -40,6 +40,10 @@ echo "==========================="
 echo "Pulling changes from GitHub"
 echo "==========================="
 git pull origin master
+echo "=============="
+echo "Reseting NGINX"
+echo "=============="
+sudo service nginx restart
 echo "==========="
 echo "ALL DONE!!!"
 echo "==========="
