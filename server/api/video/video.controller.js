@@ -22,9 +22,7 @@ exports.index = function(req, res) {
     .populate('_category', 'name')
     .populate('createdBy', 'name')
     .populate('updatedBy', 'name');
-  console.log(req.query.limitTo);
   if (req.query.limitTo){
-    console.log('I need to limit the query');
     query = query.limit(parseInt(req.query.limitTo));
   }
   query.exec(function (err, videos) {
